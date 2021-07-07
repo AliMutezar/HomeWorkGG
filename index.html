@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Home Work</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <head>
+                <h1>Create Playlist</h1>
+            </head>
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+
+            <div>
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description">
+            </div>
+            <button onclick="addSongs()">submit</button>
+
+            <div class="container">
+                <div class="wrapper">
+                    <div id="cover"> </div>
+                    <p>Track title</p>
+                    <p>Artist</p>
+                    <p>Album</p>
+                    <button>Select</button>
+                </div>
+
+                <p id="message"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function addSongs() {
+            let text = document.getElementById("message");
+            let image = document.getElementById("cover");
+            if (confirm("Tambahkan Lagu")) {
+                image.innerHTML = "<img src='img/kygo.jpg' class='kygo'>";
+                text.innerHTML = "Lagu berhasil ditambahkan"
+            } else {
+                text.innerHTML = "Tidak ada lagu yang ditambahkan";
+            }
+        }
+    </script>
+</body>
+
+</html>
