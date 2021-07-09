@@ -13,6 +13,7 @@
 <body>
     <main>
         <div class="container">
+
             <head>
                 <h1>Create Playlist</h1>
             </head>
@@ -25,34 +26,41 @@
                 <label for="description">Description</label>
                 <input type="text" id="description" name="description">
             </div>
-            <button onclick="addSongs()">submit</button>
+            <button>submit</button>
 
             <div class="container">
                 <div class="wrapper">
-                    <div id="cover"> </div>
-                    <p>Track title</p>
-                    <p>Artist</p>
-                    <p>Album</p>
+                    <div> 
+                        <img src="" id="cover">
+                    </div>
+                    <p id="track-title"></p>
+                    <p id="artist"></p>
+                    <p id="album"></p>
                     <button>Select</button>
                 </div>
-
-                <p id="message"></p>
             </div>
+
         </div>
     </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
-        function addSongs() {
-            let text = document.getElementById("message");
-            let image = document.getElementById("cover");
-            if (confirm("Tambahkan Lagu")) {
-                image.innerHTML = "<img src='img/kygo.jpg' class='kygo'>";
-                text.innerHTML = "Lagu berhasil ditambahkan"
-            } else {
-                text.innerHTML = "Tidak ada lagu yang ditambahkan";
-            }
-        }
+        axios
+            .get("https://gist.githubusercontent.com/aryapradipta9/e6492383477803b233916e01f36d5465/raw/66942c739d66d3774303f84071696aa865a07077/single-sample.json", {})
+
+            .then(response => {
+                const source = document.getElementById('cover').src = response.data.album.images[1].url;
+                const trackTitle = document.getElementById('track-title');
+                const artist = document.getElementById('artist');
+                const album = document.getElementById('album');
+
+                trackTitle.innerHTML =  "Track Title: " + response.data.name;
+                artist.innerHTML =  "Artist: " + response.data.album.artists[0].name;
+                album.innerHTML =  "Album: " + response.data.album.name;
+            })
+            .catch(err => {
+                alert("Error terus dari tadi");
+            });
     </script>
 </body>
-
 </html>
